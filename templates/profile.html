@@ -1,0 +1,56 @@
+
+{% extends "second.html" %}
+
+{% block title %}profile{% end %}
+
+{% block main %}
+
+<div id="center-column">
+  <div class="main-nav">
+    <a href="/" class="item">Home</a>
+    <a href="/rules" class="item">Rules</a>
+    <a href="/courts" class="item">Courts</a>
+  </div>
+
+  <div class="inner">
+
+    <h1>{{ profile['name'] }}</h1>
+    {% if edit %}
+    <hr/>
+    <form action="/profile_update" method="POST">
+      <input type="hidden" style="display:none;" name="user_id" value="{{ profile['_id'] }}"/>
+      <div class="form-row">
+	<div class="desc">first name</div>
+	{% set firstname = profile.get('firstname') %}
+	<input class="span3" name="firstname" value="{{ firstname if firstname else '' }}" />
+      </div>
+      <div class="form-row">
+	<div class="desc">last name</div>
+	{% set lastname = profile.get('lastname') %}
+	<input class="span3" name="lastname" value="{{ lastname if lastname else '' }}" />
+      </div>
+      <div class="form-row">
+	<button class="btn span3" type="submit">Save</button>
+      </div>
+      {% raw xsrf_form_html() %}
+    </form>
+    {% end %}
+    <hr/>
+    <h3><i>Position</i>&nbsp;&nbsp;{{ profile['position'] }}</h3>
+    <h3><i>Played</i>&nbsp;&nbsp;{{ profile['played_count'] }}</h3>
+    <hr/>
+    {% if len(matches) %}
+    <h3><i>Last {{ len(matches) }} Matches</i></h3>
+    <ul>
+      {% for match in matches %}
+      <ul>
+	{% module Template('match.html', match=match) %}
+      </ul>
+      {% end %}
+    </ul>
+    {% end %}
+
+  </div>
+</div>
+
+{% end %}

@@ -1,0 +1,38 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}login{% end %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ static_url("css/login.css") }}" />{% end %}
+
+{% block main %}
+
+<div id="top-buffer"></div>
+
+<div id="login-box" class="panel">
+  <form action="/login" method="post" class="form-centred">
+
+    <div class="form-row">
+      <h3>Sign In</h3>
+    </div>
+
+    {% if (errors) %}
+    <div class="form-row">
+      <div class="alert amber">Incorrect username and password combination</div>
+    </div>
+    {% end %}
+
+    <div class="form-row">
+      <input class="default-input medium span3" name="username" type="text" placeholder="user"/>
+    </div>
+    <div class="form-row">
+      <input class="default-input medium span3" type="password" name="password" placeholder="password"/>
+    </div>
+    <div class="form-row">
+      <button class="btn medium span3 success" type="submit">Sign In</button>
+    </div>
+    {% raw xsrf_form_html() %}
+  </form>
+</div>
+
+{% end %}

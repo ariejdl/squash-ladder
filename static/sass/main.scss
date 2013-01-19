@@ -1,0 +1,202 @@
+
+@import "base";
+
+.col-container {
+    width: 100%;
+    min-width: 1080px;
+}
+
+.col-container > .col {
+    width: 33.3%;
+    float: left;
+}
+
+.col-container > .col > .inner {
+    padding: 10px;
+}
+
+.col .section-space {
+    height: 1px;
+    margin: 30px 0 30px 0;
+}
+
+.col .section h4 {
+    text-align: center;
+}
+
+.col .section h4 div { @include inline; }
+.col .section h4 div > i { @include inline; color: $gold2; }
+
+#edit-ladder,
+#save-edit-ladder { cursor: pointer; }
+
+#edit-ladder:hover,
+#save-edit-ladder:hover { text-decoration: underline; }
+
+.col .section hr {
+    background: $gold2;
+}
+
+.col .section hr.secondary { background: lighten($gold2, 10%); }
+
+.col .section { text-align: center; }
+
+.col .section input,
+.col .section textarea { @include inline; border: 1px solid $gold2; margin: 0px; }
+
+.col .section input.score1 { border-right: none; margin-left: 2px; }
+
+.col .section .btn.span4 { @include inline; margin: 0px; }
+
+/* challenges */
+
+.challenge-list {
+    margin: 10px 0 10px 0;
+}
+
+.challenge-list > .item {
+    background: $light-gold;
+    margin-bottom: 1px;
+}
+
+.challenge-list > .item > .name {
+    padding: 5px 0 5px 0;
+    font-size: 16px;
+}
+
+.challenge-list > .item > .comment,
+.challenge-list > .item input,
+.challenge-list > .item button {
+    font-size: 14px;
+    padding: 4px;
+}
+
+.challenge-list > .item > .name > i { color: $gold2; }
+
+.challenge-list > .item .spacer { width: 100%; height: 10px; }
+
+
+
+/* ladder itself */
+
+.ladder > .rung {
+    position: relative;
+    width: 100%;
+    background: white;
+    margin-bottom: 1px;
+    
+    @include transition-property(background);
+    @include transition-duration(150ms);
+}
+
+.ladder > .rung.flash-new {
+    background: $green;
+}
+
+.ladder > .rung > .filler {
+    height:14px;
+    width:1px;
+}
+
+
+.ladder > .rung > * {
+    padding: 10px 10px 10px 10px;
+    @include inline;
+}
+
+.ladder > .rung > .name {
+    position: absolute;
+    left: 30px; right: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.ladder > .rung > .name:hover {
+    text-decoration: underline;
+}
+
+.ladder > .rung > .position {
+    float: left;
+    color: $gold2;
+}
+
+.ladder > .rung > .count {
+    position: absolute;;
+    border-left: 1px solid $gold1;
+    padding: 6px 10px 14px 10px;
+    color: $gold2;
+
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+.ladder > .rung > .count > .count-text {
+    position: absolute;
+    font-size: 9px;
+    bottom: 4px;
+    color: $gold2;
+    width: 100%;
+    text-align: center;
+    right: 0px;
+}
+
+/* matches + comments area */
+
+#make-comment-form {
+    margin-bottom: 6px;
+}
+
+#show-comments-label > input {
+    margin: 10px 0 10px 0;
+}
+
+.matches-comments-area {
+}
+
+
+.matches-comments-area > .item {
+    width: 100%;
+    background: $light-gold;
+    margin-bottom: 1px;
+    position: relative;
+
+    @include transition-property(background);
+    @include transition-duration(150ms);
+}
+
+.matches-comments-area > .item.flash-new {
+    background: $green;
+}
+
+/* match */
+
+@import "match-format";
+
+/* comment */
+
+$comment-pad: 6;
+.matches-comments-area > .item.comment {
+    text-align: left;
+}
+
+.matches-comments-area > .item.comment > * {
+    padding: ($comment-pad / 2) + px $comment-pad + px $comment-pad + px $comment-pad + px;
+}
+
+.matches-comments-area > .item.comment > .date {
+    @include date-formatting;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: $comment-pad + px;
+}
+
+.matches-comments-area > .item.comment > .sender-name {
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: $comment-pad + px;
+}
+
+.matches-comments-area > .item.comment > .text {
+    font-size: 14px;
+}

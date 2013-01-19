@@ -1,0 +1,53 @@
+
+
+.item.match > .top {
+    width: 100%;
+}
+
+.item.match > .top > .player1,
+.item.match > .top > .player2 {
+    @include inline;
+    margin: 8px 5px 2px 5px;
+}
+
+.item.match > .top > i { color: $gold2; }
+
+.item.match > .top > .player1 {
+}
+
+.item.match > .top > .player2 {
+}
+
+@mixin date-formatting {
+    font-size: 11px; color: $gold2;
+    margin: 2px 0 2px 0;
+}
+
+.item.match > .top > .date {
+    @include date-formatting;
+}
+
+.item.match > .bottom {
+    width: 100%;
+}
+
+$game-px: 4;
+.item.match > .bottom > .game {
+    @include inline;
+    margin: 3px 2px 4px 2px;
+    font-weight: bold;
+    @include border-radius($game-px + px);
+    background: lighten($gold2, 14%);
+}
+
+.item.match > .bottom > .game > .score {
+    @include inline;
+    padding: 4px;
+    font-size: 12px;
+    color: white;
+}
+
+.item.match > .bottom > .game > .score.winner {
+    background: $gold2;
+    @include border-radius($game-px + px);
+}

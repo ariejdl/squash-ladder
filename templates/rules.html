@@ -1,0 +1,40 @@
+
+{% extends "second.html" %}
+
+{% block title %}rules{% end %}
+
+{% block main %}
+
+<div id="center-column">
+  <div class="main-nav">
+    {% if profile %}<a href="/profile/{{ profile['unique_username'] }}" class="item">Profile</a>{% end %}
+    <a href="/" class="item">Home</a>
+    <a href="/courts" class="item">Courts</a>
+  </div>
+
+  <div class="inner formatted">
+    <h2>Some Guidelines</h2>
+
+    <h3>Ladder Rules</h3>
+    <ul>
+      <li>Any player may challenge any other player for a ladder match.</li>
+      <li>When a higher-ranked player A beats a lower-ranked player B, standings remain unchanged.</li>
+      <li>When an unranked or lower-ranked player B beats a higher-ranked player A, player B will take player A's ladder position and player A will drop one rank.</li>
+      <li>Results should be entered as soon as possible after a match.</li>
+      <li>Players should agree on who will enter the score.</li>
+    </ul>
+
+    <h3>Rules of Play</h3>
+    <ul>
+      <li>Ladder matches are best-of-5 games.</li>
+      <li>Games are scored to 9 points, where only server scores a point.</li>
+    </ul>
+
+    <div class="info">rules originally taken from <a href="http://fp.cs.cmu.edu/squash/rules.php" target="_blank">here</a><div>
+
+ </div>
+
+</div>
+
+
+{% end %}

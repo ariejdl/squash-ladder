@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ static_url("css/main.css") }}" />{% end %}
+{% block javascripts %}
+
+<script src="{{ static_url("js/main.js") }}"></script>
+
+{% end %}
+
+{% block main %}
+
+<div class="main-nav">
+  <a href="/profile/{{ me['unique_username'] }}" class="item">Profile</a>
+  <a href="/rules" class="item">Rules</a>
+  <a href="/courts" class="item">Courts</a>
+  
+  <div class="name">{{ me['name'] }}</div>
+</div>
+
+<div class="col-container">
+  <div class="col">
+    <div class="inner">
+
+      <div class="section">
+	<h4>Record Match</h4>
+	<hr/>
+	<form id="record-match-form">
+	  <div style="display:none;" class="alert span3"></div>
+	  <div class="form-row">
+	    
+	    you played&nbsp;&nbsp;<select name="other_player_id" class="span2">
+	      <option value="">-</option>{% for user in others %}
+	      <option value="{{ user['_id'] }}">{{ user['name'] }}</option>
+	    {% end %}</select>
+	  </div>
+	  <div class="form-row">
+	    on date
+	    <select name="date" style="width:54px;">
+	      <option value="1">1</option>
+	      <option value="2">2</option>
+	      <option value="3">3</option>
+	      <option value="4">4</option>
+	      <option value="5">5</option>
+	      <option value="6">6</option>
+	      <option value="7">7</option>
+	      <option value="8">8</option>
+	      <option value="9">9</option>
+	      <option value="10">10</option>
+	      <option value="11">11</option>
+	      <option value="12">12</option>
+	      <option value="13">13</option>
+	      <option value="14">14</option>
+	      <option value="15">15</option>
+	      <option value="16">16</option>
+	      <option value="17">17</option>
+	      <option value="18">18</option>
+	      <option value="19">19</option>
+	      <option value="20">20</option>
+	      <option value="21">21</option>
+	      <option value="22">22</option>
+	      <option value="23">23</option>
+	      <option value="24">24</option>
+	      <option value="25">25</option>
+	      <option value="26">26</option>
+	      <option value="27">27</option>
+	      <option value="28">28</option>
+	      <option value="29">29</option>
+	      <option value="30">30</option>
+	      <option value="31">31</option>
+	    </select>
+	    <select name="month" style="width:110px;">
+	      <option value="jan">January</option>
+	      <option value="feb">February</option>
+	      <option value="mar">March</option>
+	      <option value="apr">April</option>
+	      <option value="may">May</option>
+	      <option value="jun">June</option>
+	      <option value="jul">July</option>
+	      <option value="aug">August</option>
+	      <option value="sep">September</option>
+	      <option value="oct">October</option>
+	      <option value="nov">November</option>
+	      <option value="dec">December</option>
+	    </select>
+	    <select name="year" style="width:70px;">
+	      <option value="2013">2013</option>
+	      <option value="2014">2014</option>
+	      <option value="2015">2015</option>
+	    </select>
+	  </div>
+	  <div class="form-row small">
+	    games (your score first)
+	  </div>
+	  <div class="form-row" style="margin-top:-14px;">
+	    1.<input class="span0 score1" name="game1-me"/><input class="span0" name="game1-other"/>
+	    2.<input class="span0 score1" name="game2-me"/><input class="span0" name="game2-other"/>
+	    3.<input class="span0 score1" name="game3-me"/><input class="span0" name="game3-other"/>
+	    4.<input class="span0 score1" name="game4-me"/><input class="span0" name="game4-other"/>
+	    5.<input class="span0 score1" name="game5-me"/><input class="span0" name="game5-other"/>
+	  </div>
+	  <div class="form-row">
+	    <button type="submit" class="btn span2">Record</button>
+	  </div>
+	</form>
+      </div>
+
+      <div class="section-space"></div>
+
+      <div class="section">
+	<h4>Challenges</h4>
+	<hr/>
+	<form id="send-challenge-form">
+	<div style="display:none;" class="alert span3"></div>
+	  <div class="form-row">
+	    challenge &nbsp;
+	    <select name="user_id" class="span2">
+	      <option value="">-</option>{% for user in others %}
+	      <option value="{{ user['_id'] }}">{{ user['name'] }}</option>
+	    {% end %}</select>
+	    <button type="submit" class="btn">send</button>
+	  </div>
+	  <div class="form-row">
+	    <textarea name="comment" placeholder="quick comment, e.g. date, time, location" rows="2"></textarea>
+	  </div>
+	  <br/>
+	</form>
+	<hr class="secondary"/>
+	<h5>Received</h5>
+
+	<ul id="received-challenges" class="challenge-list">
+	  <div style="display:none;" class="alert"></div>
+	  {% for c in challenges_received %}
+	  <li challenge_id="{{c['_id']}}" sender_id="{{c['sender_id']}}" class="item">
+	    <div class="name"><i>from</i>&nbsp;&nbsp;<b>{{ c['sender_name'] }}</b>&nbsp;&nbsp;<i>on {{ c['date_pretty'] }}</i></div>
+	    {% for comment in c['comments'] %}
+	      <div class="comment">{{ comment }}</div>
+	    {% end %}
+	      <div class="form-row">
+		<input placeholder="add comment" name="reply-comment" class="span4"/>
+	      </div><div class="form-row">
+		<button class="btn span1">Accept</button>&nbsp;<button class="btn span1">Decline</button>
+	      </div>
+	      <div class="spacer"></div>
+	  </li>
+	  {% end %}
+	</ul>
+
+	<hr class="secondary"/>
+	<h5>Responses</h5>
+
+	<ul id="accepted-challenges" class="challenge-list">
+	  <div style="display:none;" class="alert"></div>
+	  {% for c in challenges_responded %}
+	  <li challenge_id="{{c['_id']}}" sender_id="{{c['recipient_id']}}" class="item">
+	    <div class="name"><b>{{ c['recipient_name'] }}</b>&nbsp;&nbsp;<i>accepts (originally sent{{ c['date_pretty'] }})</i></div>
+	    {% for comment in c['comments'] %}
+	      <div class="comment">{{ comment }}</div>
+	    {% end %}
+	    <button class="btn">Close</button>
+	    <div class="spacer"></div>
+	  </li>
+	  {% end %}
+	</ul>
+
+
+	<hr class="secondary"/>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="inner">
+      <div class="section">
+	<h4>Ladder&nbsp;<div><i id="edit-ladder">edit</i>&nbsp;<i style="display:none;" id="save-edit-ladder">save</i></div></h4>
+	<hr/>
+	<div style="display:none;" class="alert span3"></div>
+	<ul class="ladder">
+	{% for user in users %}
+	  <li class="rung" user_id="{{ user['_id'] }}">
+	    <div class="filler"></div>
+	    <div class="position">{{ user['position'] }}</div>
+	    <a href="/profile/{{ user['unique_username'] }}" class="name">{{ user['name'] }}</a>
+	    <div class="count">
+	      {{ user['played_count'] }}
+	      <div class="count-text">played</div>
+	    </div>
+	  </li>
+	{% end %}
+	</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="inner">
+
+      <div class="section">
+	<h4>Recent Matches</h4>
+	<hr/>
+	<!-- creator can delete if wrong (small text, delete error) -->
+	<form id="make-comment-form">
+	  <div style="display:none;" class="alert span3"></div>
+	  <textarea name="comment" class="span4" name="comment" placeholder="comment"></textarea><br/>
+	  <button class="btn span4" type="submit">comment</button>
+	</form>
+	<label id="show-comments-label"><input type="checkbox" checked="checked" />&nbsp;&nbsp;show comments</label>
+	<ul class="matches-comments-area">
+	{% for m_c in matches_comments %}	  
+	  {% if m_c['is_match'] %}
+	    {% module Template('match.html', match=m_c['content']) %}
+  	  {% else %}
+	  {% set comment = m_c['content'] %}
+	  <li item_date="{{ comment['date'] }}" class="item comment">
+	    <div class="sender-name">{{ comment['sender_name'] }}</div>
+	    <div class="text">{{ comment['body'] }}</div>
+	    <div class="date">{{ comment['date_pretty'] }}</div>
+	  </li>
+	  {% end %}
+	{% end %}
+	</ul>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+{% end %}

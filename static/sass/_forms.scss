@@ -1,0 +1,122 @@
+
+form {
+    margin: 10px 0 20px 0;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: $gold1;
+    width: 100%;
+
+    margin: 10px 0 10px 0;
+}
+
+.panel {
+    background: white;
+    border: 1px solid $gold2;
+    padding: 20px;
+    @include border-radius(2px);
+    @include box-shadow(rgba(0,0,0,0.1) 0 2px 0);
+}
+
+.form-row {
+    width: 100%;
+    margin: 4px 0 4px 0;
+    padding: 4px 0 4px 0;
+    height: 30px;
+}
+
+.form-row.center > *,
+.form-centred > * {
+    text-align: center;
+}
+
+.form-row > select,
+.form-row > input {
+    @include inline;
+}
+
+$def-pad: 5;
+textarea, input {
+    border: 1px solid $gold1;
+    padding: $def-pad + px 4px $def-pad + px 4px;
+}
+
+textarea:-moz-placeholder,
+input:-moz-placeholder {
+    color: #ccc;
+}
+
+
+textarea { resize: none; }
+
+$diff: 10;
+textarea.span2, input.span2 { width: $span2 - $diff + px; }
+textarea.span3, input.span3 { width: $span3 - $diff + px; }
+textarea.span4, input.span4 { width: $span4 - $diff + px; }
+
+textarea:focus,
+input:focus {
+    outline: none;
+    border: 1px solid $gold2;
+}
+
+select {
+    border: 1px solid $gold2;
+    padding: $def-pad + px 4px $def-pad + px 4px;
+    height: 34px;
+
+    background-color: white;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appeareance: none;
+
+    background-image: url('/static/images/caret.png');
+
+    background-repeat: no-repeat;
+    background-position: 92%;
+    padding-right: 4px;
+}
+
+select:focus { outline: none; }
+
+.btn {
+    background: $gold2;
+    color: white;
+    border: darken($gold2, 5%);
+    cursor: pointer;
+    padding: $def-pad + px 6px $def-pad + px 6px;
+    border: 1px solid darken($gold2, 6%);
+}
+
+.btn:hover { background: darken($gold2, 5%); border: 1px solid darken($gold2, 10%); }
+.btn:active { background: darken($gold2, 10%); border: 1px solid darken($gold2, 14%); }
+
+.btn.primary {
+}
+
+.btn.success {
+}
+
+.btn.error {
+}
+
+/* alerts */
+
+.alert {
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alert.amber {
+    background: $amber2;
+}
+
+.alert.green {
+    background: $green;
+}

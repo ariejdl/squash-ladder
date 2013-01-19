@@ -1,0 +1,30 @@
+
+{% extends "second.html" %}
+
+{% block title %}courts{% end %}
+
+{% block main %}
+
+<div id="center-column">
+  <div class="main-nav">
+    {% if profile %}<a href="/profile/{{ profile['unique_username'] }}" class="item">Profile</a>{% end %}
+    <a href="/" class="item">Home</a>
+    <a href="/rules" class="item">Rules</a>
+  </div>
+
+  <div class="inner formatted">
+    <h2>Courts</h2>
+
+    <h3>Useful Links</h3>
+    <ul>
+      <li>courts in mayfair <a target="_blank" href="http://www.englandsquashandracketball.com/find/courts/results?post_code=w1s+4ff&distance=5">link<a></li>
+      <li>RAC squash <a target="_blank" href="https://maps.google.co.uk/maps?client=safari&oe=UTF-8&ie=UTF-8&q=rac+club+pall+mall">google map link</a></li>
+    </ul>
+
+ </div>
+
+
+</div>
+
+
+{% end %}

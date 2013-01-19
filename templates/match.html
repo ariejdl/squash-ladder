@@ -1,0 +1,25 @@
+
+
+<li item_date="{{ match['date'] }}" class="item match">
+  <div class="top">
+    {% if not match['player_1_winner'] %}
+    {% set temp = match['player_1_name'] %}
+    {% set match['player_1_name'] = match['player_2_name'] %}
+    {% set match['player_2_name'] = temp %}
+    {% set match['scores'] = [(score[1], score[0]) for score in match['scores']]  %}
+    {% end %}
+    <div class="player1">{{ match['player_1_name'] }}</div><i>beat</i><div class="player2">{{ match['player_2_name'] }}</div>
+    <div class="date">{{ match['date_pretty'] }}</div>
+  </div>
+  <div class="bottom">
+    {% for game in match['scores'] %}
+    <div class="game">
+      {% if game[0] > game[1] %}
+      <div class="score winner">{{ game[0] }}</div><div class="score">{{ game[1] }}</div>
+      {% else %}
+      <div class="score">{{ game[0] }}</div><div class="score winner">{{ game[1] }}</div>
+      {% end %}
+    </div>
+    {% end %}
+  </div>
+</li>

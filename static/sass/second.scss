@@ -1,0 +1,70 @@
+
+@import "base";
+
+html, body { height: 100%; width: 100%; }
+
+$col-w: 600;
+#center-column {
+    background: white;
+    width: $col-w + px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+}
+
+#center-column > .inner {
+    padding: 40px;
+}
+
+#center-column > .inner > h3 {
+    margin: 8px 0 8px 0;
+}
+
+/* profile */
+
+#center-column > .inner .form-row > .desc {
+    float: left;
+    padding-top: 10px;
+}
+
+#center-column > .inner .form-row > input,
+#center-column > .inner .form-row > button {
+    float: right;
+}
+
+@import "match-format";
+
+.item.match {
+    background: lighten($light-gold, 2%);
+    margin-bottom: 1px;
+    padding: 8px;
+}
+
+.item.match > .top > .date {
+    margin-left: 5px;
+}
+
+/* rules */
+
+#center-column > .inner.formatted > h3 {
+    margin: 20px 0 20px 0;
+}
+
+#center-column > .inner.formatted > ul {
+    margin-left: 30px;
+}
+
+#center-column > .inner.formatted > ul > li {
+    list-style-type:disc;
+    margin: 4px 0 4px 0;
+    color: #777;
+}
+
+#center-column > .inner.formatted > .info,
+#center-column > .inner.formatted > .info > a {
+    color: $gold2;
+    font-size: 14px;
+    margin: 20px 0 20px 0;
+}
+
+/* courts */

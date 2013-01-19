@@ -1,0 +1,4 @@
+
+tornado==2.4.1
+pymongo==2.4.1
+voluptuous==0.6
