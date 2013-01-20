@@ -998,7 +998,6 @@ var ChallengeList = (function(){
             sender_id = $(this).attr('sender_id');
 
         $(accept).click(function() {
-            // TODO: show loader
             Comms.respondChallenge({
                     'challenge_id': challenge_id,
                     'sender_id': sender_id,
@@ -1010,11 +1009,11 @@ var ChallengeList = (function(){
                     nodes.remove();
                     Forms.updateAlert(alert, true, 'challenge accepted');
                 } else {
-                    Forms.updateAlert(alert, 'something went wront');
+                    Forms.updateAlert(alert, false, 'something went wrong');
                 }
             },
             function() {
-                Forms.updateAlert(alert, 'something went wront');
+                Forms.updateAlert(alert, false, 'something went wrong');
             });
         });
 
@@ -1029,7 +1028,7 @@ var ChallengeList = (function(){
                 }
             },
             function() {
-                Forms.updateAlert(alert, 'something went wront');
+                Forms.updateAlert(alert, false, 'something went wrong');
             });
         });
     }
@@ -1049,11 +1048,11 @@ var ChallengeList = (function(){
                 if (d && d.good) {
                     nodes.remove();                    
                 } else {
-                    Forms.updateAlert(alert, 'something went wront');                    
+                    Forms.updateAlert(alert, false, 'something went wrong');                    
                 }
             },
             function() {
-                Forms.updateAlert(alert, 'something went wront');
+                Forms.updateAlert(alert, false, 'something went wrong');
             });
         });
     }
@@ -1078,11 +1077,11 @@ var Forms = (function() {
         var today = new Date(),
             date = today.getDate(),
             month = {
-                0: 'jan', 1: 'jan', 2: 'jan',
-                3: 'jan', 4: 'jan', 5: 'jan',
-                6: 'jan', 7: 'jan', 8: 'jan',
-                9: 'jan', 10: 'jan', 11: 'jan'
-            }[today.getMonth],
+                0: 'jan', 1: 'feb', 2: 'mar',
+                3: 'apr', 4: 'may', 5: 'jun',
+                6: 'jul', 7: 'aug', 8: 'sep',
+                9: 'oct', 10: 'nov', 11: 'dec'
+            }[today.getMonth()],
             year = today.getFullYear();
 
         form.find('[name="date"]').val(date);
