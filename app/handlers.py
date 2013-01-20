@@ -529,6 +529,8 @@ class ProfileHandler(BaseHandler):
             user_lookup = get_user_lookup(users)
             last_matches = tidy_matches(last_matches, user_lookup)
 
+            last_matches = sorted(last_matches, key=lambda c: c['date'], reverse=True)
+
             if me and me['_id'] == user['_id']:
                 self.render("profile.html", profile=user, edit=True, matches=last_matches)
             else:

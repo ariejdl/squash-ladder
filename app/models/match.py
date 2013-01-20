@@ -27,6 +27,6 @@ class MatchModel(Column):
         
     def get_last(self, u_id, limit=10):
         out = []
-        for match in self.col.find({ "$or": [{'player_1': u_id}, {'player_2': u_id}] }).limit(limit):
+        for match in self.col.find({ "$or": [{'player_1': u_id}, {'player_2': u_id}] }).sort('date', pymongo.DESCENDING).limit(limit):
             out.append(match)
         return out

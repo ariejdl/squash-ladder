@@ -211,15 +211,26 @@ var Ladder = (function() {
     }
 
     function update(newLadder, idsAffected) {
+	toggleEditOff();
         area.empty();
             $.each(newLadder, function() {
             area.append(rungNodes(this, this._id in idsAffected));
         });
     }
 
-    function toggleEditOff() {
+    function sortLadderToOriginal() {
+        var rungs = area.children('.rung').get();
+        rungs.sort(function(a, b) {
+            return parseInt($(a).find('.position').html()) -
+                    parseInt($(b).find('.position').html());
+        });
+        $.each(rungs, function() { area.append(this); });
+    }
+
+    function toggleEditOff(reset) {
         saveBut.hide();
         editLadderBut.html('edit');
+        if (reset) sortLadderToOriginal();
         swapOutDraggability();
         editing = false;
     }
@@ -239,7 +250,7 @@ var Ladder = (function() {
             editLadderBut = $('#edit-ladder');
 
             editLadderBut.click(function() {
-                if (editing) toggleEditOff();
+                if (editing) toggleEditOff(true);
                 else toggleEditOn.call();
             });
 

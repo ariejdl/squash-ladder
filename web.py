@@ -24,7 +24,7 @@ from app import utils
 
 from tornado.options import define, options
 
-PROD = True
+PROD = False
 PORT = 5000
 logger = logging.getLogger(__name__)
 Settings.setup(PROD)
