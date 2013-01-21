@@ -500,7 +500,7 @@ class ManualUpdateLadderHandler(BaseHandler):
 
         comment = self.db.Comment.get_default()
         comment['sender_id'] = self.current_user['_id']
-        comment['body'] = 'automatic message: I updated the order manually'
+        comment['body'] = 'automatic message: I updated the ladder manually'
         self.db.Comment.insert(comment)
         comment = tidy_comment(comment, { self.current_user['_id']: tidy_user(self.current_user) })
 

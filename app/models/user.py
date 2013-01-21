@@ -12,7 +12,7 @@ class UserModel(Column):
     def get_default(self):
         return {
             "firstname": None,
-            "lapstname": None,
+            "lastname": None,
             "username": None,
             "password": None,
             "position": 1,
